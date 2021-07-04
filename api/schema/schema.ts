@@ -1,4 +1,5 @@
 import graphql from 'graphql';
+import _ from 'lodash';
 
 const { GraphQLObjectType, GraphQLString, GraphQLSchema } = graphql;
 
@@ -24,7 +25,9 @@ const RootQuery = new GraphQLObjectType({
     book: {
       type: BookType,
       args: { id: { type: GraphQLString } },
-      resolve(parent, args) {},
+      resolve(parent, args) {
+        return _.find(books, { id: args.id });
+      },
     },
   },
 });
