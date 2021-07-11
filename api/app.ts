@@ -3,6 +3,7 @@ import { graphqlHTTP } from 'express-graphql';
 import schema from './schema/schema';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 //dotenv
 dotenv.config({
@@ -10,6 +11,13 @@ dotenv.config({
 });
 
 const app = express();
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200,
+  })
+);
 
 const MONGO_URI = process.env.MONGO_URI;
 //Database
